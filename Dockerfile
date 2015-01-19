@@ -6,10 +6,9 @@ ENV DEBIAN_FRONTEND noninteractive
 # apt-get高速化のためにミラーサーバを設定
 ADD sources.list /etc/apt/sources.list
 
-# apt-get高速化、キャッシュ無効化
+# キャッシュ無効化
 # https://github.com/docker/docker/issues/824
-RUN echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup && \
-    echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
+RUN echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
 
 # open-jdkインストール
 RUN apt-get update && \
